@@ -21,25 +21,21 @@ public class Prenotazione {
     @JoinColumn(name="postazione_fk")
     private Postazione postazione;
 
-    private LocalDate dataInizioPrenotazione;
+    private LocalDate dataPrenotazione;
 
-    private LocalDate dataFinePrenotazione;
 
     @ManyToOne
     @JoinColumn(name = "utente_fk")
+
     private Utente utente;
 
+    private int numeroPartecipanti;
 
-    public Prenotazione(Postazione p) throws Exception{
-
-        if (!p.getStato()){
-           throw new RuntimeException("Postazione occupata");
-        }else{
-            p.setStato(false);
-            this.dataInizioPrenotazione = LocalDate.now();
-            this.dataFinePrenotazione = dataInizioPrenotazione.plusDays(1);
-            this.postazione = p;
-        }
+    public void setNumeroPartecipanti(int numeroPartecipanti) throws Exception{
+        if (postazione == null) throw new Exception("Nessuna postazione è associata a questa prenotazione");
+        if( numeroPartecipanti > postazione.getNumeroMassimoPartecipanti()) throw new Exception("i partecipanti superano la capienza massima");
+        this.numeroPartecipanti = numeroPartecipanti;
+    }
     }
 
-}
+

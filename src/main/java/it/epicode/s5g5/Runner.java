@@ -12,6 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class Runner implements CommandLineRunner {
 
@@ -27,28 +29,46 @@ public class Runner implements CommandLineRunner {
     @Autowired
     PostazioneService postazioneService;
 
-    private Logger logger = LoggerFactory.getLogger("s5g5");
+    private final Logger logger = LoggerFactory.getLogger("s5g5");
+
+
 
     @Override
     public void run(String... args) throws Exception {
 
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        Utente u = ctx.getBean("marco", Utente.class);
-        utenteService.saveUtente(u);
+//        try {
+////            Utente u = ctx.getBean("marco", Utente.class);
+////            utenteService.saveUtente(u);
+////
+////            Edificio e = ctx.getBean("sant'anna", Edificio.class);
+////            edificioService.saveEdificio(e);
+////
+////
+////            Postazione post = ctx.getBean("salaMultimediale sant'anna", Postazione.class);
+////            post.setEdificio(e);
+////            postazioneService.savePostazione(post);
+//
+////            Prenotazione pren = ctx.getBean("prenotazione1", Prenotazione.class);
+////            pren.setUtente(u);
+////            pren.setPostazione(post);
+////            pren.setDataPrenotazione(LocalDate.now());
+//
+//   //        prenotazioneService.savePrenotazione(prenotazioneService.cercaPrenotazione(1));
+//
+//            Prenotazione p = prenotazioneService.cercaPrenotazione(1);
+//             Utente u = utenteService.Cercautente(2);
+//
+//             p.setUtente(u);
+//
+//             prenotazioneService.savePrenotazione(p);
+//
+//        }catch (IllegalStateException e){
+//            logger.error(e.getMessage());
+//        }
 
-        Edificio e = ctx.getBean("sant'anna", Edificio.class);
-        edificioService.saveEdificio(e);
-
-
-        Postazione post = ctx.getBean("salaMultimediale sant'anna", Postazione.class);
-        post.setEdificio(e);
-        postazioneService.savePostazione(post);
-
-        Prenotazione pren = ctx.getBean("prenotazione1", Prenotazione.class);
-        pren.setUtente(u);
-        pren.setPostazione(post);
-        prenotazioneService.savePrenotazione(pren);
+       logger.info(String.valueOf(postazioneService.cercaPostazionePerCitta(TipoPostazione.SALA, "Messina")));
 
     }
 

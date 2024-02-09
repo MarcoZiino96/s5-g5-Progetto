@@ -35,8 +35,8 @@ public class AppConfig{
         return p;
     }
 
-//    @Bean("prenotazione1")
-//    public Prenotazione prenotaione(){
-//        return new Prenotazione();
-//    }
+    @Bean("prenotazione1")
+    public Prenotazione prenotaione(){
+        return new Prenotazione();
+    }
 }

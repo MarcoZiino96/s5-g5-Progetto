@@ -17,17 +17,28 @@ public class Postazione {
 
     @Enumerated(EnumType.STRING)
     private TipoPostazione tipoPostazione;
+
     private int numeroMassimoPartecipanti;
 
     @ManyToOne
     @JoinColumn(name="edificio_fk")
     private Edificio edificio;
 
-
     @OneToMany(mappedBy = "postazione")
     private List<Prenotazione> prenotazioni;
 
-    private Boolean stato = true;
+
+    @Override
+    public String toString() {
+        return "Postazione{" +
+                "id=" + id +
+                ", descrizione='" + descrizione + '\'' +
+                ", tipoPostazione=" + tipoPostazione +
+                ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
+                ", edificio=" + edificio +
+                '}';
+    }
+
 
 
 }

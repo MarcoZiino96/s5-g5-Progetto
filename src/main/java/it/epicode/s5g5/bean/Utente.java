@@ -10,6 +10,17 @@ import java.util.List;
 @Data
 public class Utente {
 
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "id=" + id +
+                ", UserName='" + UserName + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "sequenza_edifici", initialValue = 1, allocationSize = 1)
